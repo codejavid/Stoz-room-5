@@ -1,0 +1,66 @@
+
+
+/* h1{
+    color: blue;
+} */
+
+/* .cls-heading{
+    color: violet;
+} */
+
+#heading-1{
+    /* color: #4328DD; */
+    /* color: rgba(67, 40, 221, 0.5); */
+}
+
+.box{
+    border: 3px solid green;
+    /* padding: 50px; */
+    margin: 50px;
+    /* padding-top: 50px;
+    padding-right: 100px;
+    padding-bottom: 150px;
+    padding-left: 200px; */
+
+    /* Two params TOP AND BOTTOM */
+    padding: 50px 100px;
+    /* Four params TOP => RIGHT => BOTTOM => LEFT */
+    padding: 50px 100px 150px 200px ;
+}
+
+.box-1{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    margin-bottom: 20px;
+    padding: 50px;
+}
+
+.box-2{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    box-sizing: border-box;
+    padding: 50px;
+    border: 5px red solid;
+}
+
+button{
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: green;
+    border:none;
+    color: #ffffff;
+    font-size: 30px;
+    border: 5px green solid;
+}
+
+button:hover{
+    background-color: blue;
+    border: 5px red solid;
+}
+
+
+
+
+
