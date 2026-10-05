@@ -1,0 +1,58 @@
+
+
+.parent{
+    display: flex;
+    height: 800px;
+    /* justify-content: flex-start; */
+    /* justify-content: center; */
+    /* justify-content: flex-end; */
+    justify-content: space-between;
+    /* justify-content: space-around; */
+    /* justify-content: space-evenly; */
+    /* align-items: flex-start; */
+    /* align-items: center; */
+    /* align-items: flex-end; */
+    /* flex-wrap: nowrap; */
+    /* flex-wrap: wrap; */
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.child{
+    /* width: 200px; */
+    flex-basis: 200px;
+    height: 200px;
+    /* background-color: blue; */
+    color: #ffffff;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1; */
+    /* align-self: flex-end; */
+}
+
+.parent .child:nth-child(1){
+    background-color: green;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1; */
+    /* order: 2; */
+    align-self: flex-start;
+}
+
+.parent .child:nth-child(2){
+    background-color: violet;
+    /* flex-grow: 2; */
+    /* flex-shrink: 2; */
+    /* order: 3; */
+    align-self: center;
+}
+
+.parent .child:nth-child(3){
+    background-color: chocolate;
+    /* flex-grow: 3; */
+    /* flex-shrink: 3; */
+    /* order: 1; */
+    align-self: flex-end;
+}
