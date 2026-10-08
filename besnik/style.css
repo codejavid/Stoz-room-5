@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+span {
+  display: inline-block;
+}
+
+.btn {
+  padding: 8px 30px;
+  border-radius: 20px;
+}
+
+.primary-btn {
+  background-color: #231A36;
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background-color:rgba(255, 255, 255, 0.2);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  max-width: 1115px;
+  margin: 0px auto;
+  padding: 0px 15px;
+}
+
+.bg{
+   background: url("./img/banner/bg.png") no-repeat center;
+   /* background-repeat: no-repeat;
+   background-position: center; */
+   background-size: cover;
+}
+
+/* Header */
+
+header {
+  padding: 20px 0px;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-wrapper a {
+  color: #ffffff;
+}
+
+.header-wrapper nav {
+  display: flex;
+  gap: 30px;
+}
+
+/* Banner */
+.banner {
+  padding: 100px 0px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.banner h1 {
+  font-size: 94px;
+}
+
+.banner p {
+  margin-bottom: 50px;
+}
+
+/* clients */
+
+.clients{
+    padding: 80px 0px;
+}
+
+.clients h4{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.clients-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .line-break{
+        display: block;
+    }
+}
+@media screen and (max-width: 992px) {
+  .clients-wrapper div{
+    width: 30%;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .banner h1{
+    font-size: 50px;
+  }
+
+  .clients-wrapper div{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+
+  .clients-wrapper div{
+    width: 100%;
+  }
+}
+
+
