@@ -46,6 +46,11 @@ body {
    background-size: cover;
 }
 
+.sec-heading{
+  text-align: center;
+  margin-bottom: 45px;
+}
+
 /* Header */
 
 header {
@@ -101,10 +106,45 @@ header {
     text-align: center;
 }
 
+/* Solutions */
+
+.solutions{
+  padding: 100px 0px;
+}
+
+.solutions .container{
+   max-width: 750px;
+}
+
+.solutions-wrapper > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .solutions-wrapper > div:nth-child(1) > div:nth-child(2),
+.solutions-wrapper > div:nth-child(3) > div:nth-child(2){
+  background-color: green;
+  text-align: right;
+} */
+
+
+
 @media screen and (min-width: 768px) {
     .line-break{
         display: block;
     }
+
+    .solutions-wrapper > div > div{
+     width: 50%;
+    }
+
+    .solutions-wrapper > div:nth-child(odd) > div:nth-child(2){
+     text-align: right;
+    }
+
+
+
 }
 @media screen and (max-width: 992px) {
   .clients-wrapper div{
@@ -125,6 +165,17 @@ header {
 
   .clients-wrapper div{
     width: 50%;
+  }
+
+  .solutions-wrapper > div{
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .solutions-wrapper > div:nth-child(2){
+      flex-direction: column-reverse;
   }
 }
 

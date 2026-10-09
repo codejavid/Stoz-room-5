@@ -1,0 +1,16 @@
+  <div class="solutions-wrapper">
+            <div>
+              <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, optio fuga laudantium soluta ducimus autem adipisci! Impedit, a assumenda, unde natus quisquam officia incidunt ipsa, optio consequatur excepturi fugiat eveniet!</p>
+              </div>
+              <div>
+                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, optio fuga laudantium soluta ducimus autem adipisci! Impedit, a assumenda, unde natus quisquam officia incidunt ipsa, optio consequatur excepturi fugiat eveniet!</p>
+              </div>
+            </div>
+         </div>
+
+
+
+.solutions-wrapper > div > div:nth-child(1){
+  background-color: green;
+}
