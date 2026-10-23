@@ -1,0 +1,169 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+:root {
+  --brand-color: #651fff;
+}
+
+.pri-color {
+  color: #651fff;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+.banner,
+.main-img,
+.lightning,
+.team,
+.privacy,
+.pricing,
+.works,
+footer{
+  padding: 100px 0px;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+p {
+  margin: 0px;
+}
+
+/* banner */
+
+.banner {
+  background-color: #ebe5fa;
+}
+
+/* lightning */
+
+.lightning-wrapper > div > div > div {
+  padding: 50px;
+  color: #ffffff;
+  background-color: var(--brand-color);
+  border-radius: 30px;
+}
+
+/* team */
+
+.team-wrapper h3 {
+  color: var(--brand-color);
+}
+
+.team-wrapper > div > div:nth-child(1) > div {
+  background-color: #fff7ed;
+}
+
+.team-wrapper > div > div:nth-child(2) > div {
+  background-color: #e0f7fa;
+}
+
+.team-wrapper-2 {
+  padding: 50px;
+  background-color: #ececfe;
+  margin-top: 30px;
+  border-radius: 30px;
+}
+
+/* pricing */
+
+.pricing {
+  background-image: linear-gradient(#00e5ff 60%, #ffffff 40%);
+}
+
+.pricing-wrapper > div > div:nth-child(1) > div {
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 40px;
+  box-shadow: 0px 4px 24px 0px rgba(51, 51, 51, 0.2);
+}
+
+.pricing-wrapper > div > div:nth-child(2) > div {
+  background-color: #651fff;
+  padding: 50px;
+  color: #ffffff;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.pricing ul{
+    /* background-color: blue; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    display: inline-block;
+}
+
+/* .test{
+    position: relative;
+    left: -10px;
+} */
+
+.work-box{
+  position: relative;
+}
+
+/* footer */
+
+footer{
+  background-color: #1A284E;
+  color: #ffffff;
+}
+
+.footer-wrapper p{
+  margin-bottom: 80px;
+}
+
+.footer-wrapper ul li{
+  margin-bottom: 15px;
+}
+
+
+.footer-wrapper ul li a{
+  color: #ffffff;
+}
+
+.footer-wrapper ul li a:hover{
+  color: orangered;
+}
+
+
+
+@media (min-width: 992px) {
+
+  .line{
+    position: absolute;
+    top: 50px;
+    left: 75%;
+  }
+}
+
+@media (max-width: 992px) {
+  .pricing {
+    background-image: linear-gradient(#00e5ff 80%, #ffffff 20%);
+  }
+  .pricing-wrapper > div > div:nth-child(2) > div {
+    border-radius: 40px;
+    margin-top: 30px;
+  }
+
+  .line{
+    rotate: 90deg;
+    margin-top: 130px;
+  }
+
+  .work-box:not(.work-box-nm){
+    margin-bottom: 150px;
+  }
+}

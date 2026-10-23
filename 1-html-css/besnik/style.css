@@ -1,0 +1,359 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+span {
+  display: inline-block;
+}
+
+.btn {
+  padding: 8px 30px;
+  border-radius: 20px;
+}
+
+.primary-btn {
+  background-color: #231a36;
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  max-width: 1115px;
+  margin: 0px auto;
+  padding: 0px 15px;
+}
+
+.bg {
+  background: url("./img/banner/bg.png") no-repeat center;
+  /* background-repeat: no-repeat;
+   background-position: center; */
+  background-size: cover;
+}
+
+.sec-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+/* Header */
+
+header {
+  padding: 20px 0px;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-wrapper a {
+  color: #ffffff;
+}
+
+.header-wrapper nav {
+  display: flex;
+  gap: 30px;
+}
+
+/* Banner */
+.banner {
+  padding: 100px 0px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.banner h1 {
+  font-size: 94px;
+}
+
+.banner p {
+  margin-bottom: 50px;
+}
+
+/* clients */
+
+.clients {
+  padding: 80px 0px;
+}
+
+.clients h4 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.clients-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+/* Solutions */
+
+.solutions {
+  padding: 100px 0px;
+}
+
+.solutions .container {
+  max-width: 750px;
+}
+
+.solutions-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .solutions-wrapper > div:nth-child(1) > div:nth-child(2),
+.solutions-wrapper > div:nth-child(3) > div:nth-child(2){
+  background-color: green;
+  text-align: right;
+} */
+
+/* need */
+
+.need {
+  padding: 100px 0px 180px 0px;
+}
+
+.need-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.need-wrapper > div {
+  width: 30%;
+  position: relative;
+}
+
+.need-wrapper > div img {
+  width: 100%;
+}
+
+.need-wrapper > div > div {
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  bottom: -80px;
+  left: 0px;
+  width: 85%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.need-wrapper > div > div > div {
+  display: flex;
+  gap: 25px;
+}
+
+.need-wrapper h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.need-wrapper h5 {
+  font-size: 24px;
+}
+
+.need-wrapper span {
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+/* .need-wrapper a{
+  color: ;
+} */
+
+/* happy */
+
+.happy {
+  padding: 100px 0px;
+}
+
+.happy h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.star {
+  position: absolute;
+  top: -50px;
+  left: -45px;
+}
+
+.happy-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.happy-wrapper p{
+  margin: 25px 0px;
+  font-size: 22px;
+  color: #6D6D6D;
+  line-height: 36px;
+  font-style: italic;
+}
+
+
+.happy-wrapper > div:nth-child(2) img{
+  width: 60%;
+}
+
+/* subscribe */
+
+.subscribe{
+  padding: 100px 0px;
+}
+
+.subscribe-wrapper{
+  background:url("./img/subscribe/bg.png") no-repeat center;
+  background-size: cover;
+  text-align: center;
+  padding: 50px;
+  color: #ffffff;
+  border-radius: 30px;
+}
+
+.subscribe-wrapper p{
+  margin: 30px 0px;
+}
+
+/* footer */
+
+footer{
+  padding: 20px 0px;
+}
+
+.footer-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-wrapper img{
+  filter: invert(1);
+}
+
+.footer-wrapper > nav{
+  display: flex;
+  gap: 30px;
+}
+
+.footer-wrapper > nav a{
+  color: #333333;
+}
+
+@media screen and (min-width: 768px) {
+  .line-break {
+    display: block;
+  }
+
+  .solutions-wrapper > div > div {
+    width: 50%;
+  }
+
+  .solutions-wrapper > div:nth-child(odd) > div:nth-child(2) {
+    text-align: right;
+  }
+
+  .sec-heading h2 {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  .happy-wrapper > div{
+    width: 50%;
+  }
+
+  .happy-wrapper > div:nth-child(2){
+    text-align: right;
+  }
+
+}
+@media screen and (max-width: 992px) {
+  .clients-wrapper div {
+    width: 30%;
+    margin-bottom: 40px;
+  }
+
+  .need-wrapper > div:nth-child(1),
+  .need-wrapper > div:nth-child(2) {
+    width: 48%;
+    margin-bottom: 120px;
+  }
+
+  .need-wrapper > div:nth-child(3) {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .banner h1 {
+    font-size: 50px;
+  }
+
+  .clients-wrapper div {
+    width: 50%;
+  }
+
+  .solutions-wrapper > div {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  .solutions-wrapper > div:nth-child(2) {
+    flex-direction: column-reverse;
+  }
+
+  .happy-wrapper{
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+  }
+
+  .footer-wrapper{
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .footer-wrapper img{
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .clients-wrapper div {
+    width: 100%;
+  }
+
+  .need-wrapper > div {
+    width: 100% !important;
+  }
+}
