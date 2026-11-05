@@ -12,6 +12,9 @@ const clearBtn = document.querySelector(".clear-tasks");
 
 function loadEventListerners(){
 
+    // DOM Load event
+    document.addEventListener("DOMContentLoaded", getTasks);
+
     // Add task event
     form.addEventListener("submit", addTasks);
 
@@ -21,6 +24,44 @@ function loadEventListerners(){
     // Clear Task list
     clearBtn.addEventListener("click", clearTask);
 
+
+}
+
+function getTasks(){
+   
+    let tasks;
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+    }else{
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+    }
+
+    tasks.forEach(function(task){
+         // Create element
+        const li = document.createElement("li");
+
+        // Class Name
+        li.className = "collection-item";
+
+        // Add a innerText
+        li.innerText = task;
+
+        // Create a new link element
+        const link = document.createElement("a");
+
+        // Add class to link
+        link.className = "delete-item secondary-content";
+
+        // Add a icon
+        link.innerHTML = `<i class="fa fa-remove"></i>`;
+
+        // Add a link to li
+        li.appendChild(link);
+
+        // Add a li to ul
+        taskList.appendChild(li);
+    })
 
 }
 
@@ -65,12 +106,46 @@ function addTasks(e){
         // Add a li to ul
         taskList.appendChild(li);
 
+        // Store  in LS
+        storeTaskInLocalStorage(taskInput.value);
+
         // Clear the input value
         taskInput.value = "";
+
+        
 
     }
 
 }
+
+
+function storeTaskInLocalStorage(inputValue){
+
+    let tasks;
+
+    console.log(tasks);
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+        console.log("STEP - 1");
+    }else{
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+        console.log("STEP - 2");
+    }
+
+    console.log(tasks);
+
+    tasks.push(inputValue);
+
+    console.log(tasks);
+
+    
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+}
+
 
 function removeTask(e){
     
@@ -83,13 +158,45 @@ function removeTask(e){
  if(e.target.parentElement.classList.contains("delete-item")){
     if(confirm("Are you sure?")){
         e.target.parentElement.parentElement.remove();
+
+        removeTaskFromLs(e.target.parentElement.parentElement);
     }
  }
 
 }
 
+function removeTaskFromLs(taskElement){
+ 
+    let tasks;
+
+
+    if(localStorage.getItem("tasks") === null){
+        tasks = [];
+    }else{
+        tasks = JSON.parse(localStorage.getItem("tasks"));
+    }
+
+    tasks.forEach(function(task, index){
+       
+        if(taskElement.innerText === task){
+            tasks.splice(index, 1)
+        }
+
+    })
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    
+}
+
+
 function clearTask(){
     taskList.innerHTML = "";
+
+    clearFromLs();
+}
+
+function clearFromLs(){
+    localStorage.removeItem("tasks");
 }
 
 loadEventListerners();
