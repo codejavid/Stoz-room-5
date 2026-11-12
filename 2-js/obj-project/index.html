@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOP Contact Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div>
+        <h1>Contact Manager</h1>
+        <p>A small project using JavaScript classes and inheritance</p>
+      </div>
+      <span class="tag">ES6 OOP</span>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="panel">
+      <h2>Add a contact</h2>
+      <p class="muted">Choose the type of object you want to create.</p>
+
+      <form id="contact-form">
+        <label for="contact-type">Contact type</label>
+        <select id="contact-type">
+          <option value="customer">Customer</option>
+          <option value="person">Person</option>
+        </select>
+
+        <div class="two-columns">
+          <div>
+            <label for="first-name">First name</label>
+            <input id="first-name" type="text" placeholder="John" required>
+          </div>
+          <div>
+            <label for="last-name">Last name</label>
+            <input id="last-name" type="text" placeholder="Doe" required>
+          </div>
+        </div>
+
+        <div id="customer-fields">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="tel" placeholder="9876543210">
+
+          <label for="membership">Membership</label>
+          <select id="membership">
+            <option>Standard</option>
+            <option>Premium</option>
+            <option>VIP</option>
+          </select>
+        </div>
+
+        <button class="primary-button" type="submit">Add contact</button>
+        <p id="message" class="message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="list-heading">
+        <div>
+          <h2>Saved contacts</h2>
+          <p class="muted">Your contacts are saved in this browser.</p>
+        </div>
+        <span id="contact-count" class="count">0 contacts</span>
+      </div>
+
+      <div id="contact-list" class="contact-list"></div>
+      <p id="empty-state" class="empty-state">No contacts yet. Add your first contact.</p>
+    </section>
+  </main>
+</body>
+</html>
