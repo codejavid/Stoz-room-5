@@ -1,88 +1,51 @@
-// const a = "a";
-// const b = "b";
-// const c = "c";
 
-// console.log(a);
-// console.log(b);
-// console.log(c);
-
-// function one(){
-//     console.log("One");
-// }
-
-// function two(){
-//     console.log("Two");
-// }
-
-// function three(){
-//     console.log("Three");
-// }
-
-// one();
-// three();
-// two();
 
 const posts = [
-  { title: "Post 1", body: "This is post one" },
-  { title: "Post 2", body: "This is post two" },
+    {title:"Post one"},
+    {title:"Post two"}
 ];
 
-// Sync
 
-// function createPost(post){
+function createPost(post){
 
-//     setTimeout(function(){
-//         posts.push(post)
-//     }, 2000)
-// }
+    return new Promise((reslove, reject) => {
+        
+        setTimeout(() => {
 
-// function getPost(){
+            posts.push(post);
 
-//     setTimeout(function(){
+            const error = false;
 
-//         let output = "";
+            if(!error){
+                reslove();
+            }else{
+                reject();
+            }
 
-//         posts.forEach(function(post){
-//            output += `<li>${post.title}</li>`
-//         })
+        }, 2000);
 
-//         document.body.innerHTML = output;
+    })
 
-//     }, 1000)
-
-// }
-
-// createPost({title:"Post 3", body:"This is post Three"})
-// getPost();
-
-// Async
-function createPost(post, callback) {
-  setTimeout(function () {
-    posts.push(post);
-    callback();
-  }, 2000);
 }
 
-function getPost() {
-  setTimeout(function () {
-    let output = "";
+function getPosts(){
 
-    posts.forEach(function (post) {
-      output += `<li>${post.title}</li>`;
-    });
+    setTimeout(() => {
 
-    document.body.innerHTML = output;
-  }, 1000);
+        let output = "";
+
+        posts.forEach(function (post) {
+        output += `<li>${post.title}</li>`;
+        });
+
+        document.body.innerHTML = output;
+
+
+    }, 1000);
+
 }
 
-createPost({ title: "Post 3", body: "This is post three" }, getPost);
+createPost({title:"Post three"})
+.then(getPosts)
+.catch(err => document.body.innerHTML = "Something went wrong");
 
-// setTimeout(function(){
-//     console.log("Hai");
-// },0)
-
-// function x(){
-//     console.log("x");
-// }
-
-// x();
