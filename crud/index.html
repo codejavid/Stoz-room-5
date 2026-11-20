@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manager — EasyHttp CRUD</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #222;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.success {
+            display: block;
+            background: #e6f7ed;
+            color: #136c38;
+            border: 1px solid #b7ebc6;
+        }
+
+        .message.error {
+            display: block;
+            background: #fdecea;
+            color: #a61d24;
+            border: 1px solid #f5c2c7;
+        }
+
+        form {
+            display: flex;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .btn-edit {
+            background: #e0e7ff;
+            color: #1e40af;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 6px 10px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        th {
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .actions {
+            text-align: right;
+        }
+
+        .status-text {
+            text-align: center;
+            color: #666;
+            padding: 20px 0;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>User Manager</h1>
+        <p class="subtitle">Simple CRUD with EasyHttp</p>
+
+        <!-- Status Message -->
+        <div id="message" class="message"></div>
+
+        <!-- Add / Update Form -->
+        <div class="card">
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <input type="text" id="user-name" placeholder="Enter user name" required>
+                <button type="submit" id="submit-btn" class="btn-primary">Add User</button>
+                <button type="button" id="cancel-btn" class="btn-secondary hidden">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Users Table -->
+        <div class="card">
+            <p id="status-text" class="status-text">Loading users...</p>
+
+            <table id="users-table" class="hidden">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th class="actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // 1. EasyHttp Library
+        class EasyHttp {
+            get(url) {
+                return fetch(url).then(res => {
+                    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+                    return res.json();
+                });
+            }
+
+            post(url, data) {
+                return fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(res => {
+                    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+                    return res.json();
+                });
+            }
+
+            put(url, data) {
+                return fetch(url, {
+                    method: 'PUT',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(res => {
+                    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+                    return res.json();
+                });
+            }
+
+            delete(url) {
+                return fetch(url, {
+                    method: 'DELETE',
+                    headers: { 'Content-type': 'application/json' }
+                }).then(res => {
+                    if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+                    return res.json();
+                });
+            }
+        }
+
+        // 2. Setup
+        const API_URL = "https://6afdbfd42a9c141d36b8fd18.mockapi.io/app/v1/users";
+        const http = new EasyHttp();
+
+        const form = document.getElementById('user-form');
+        const userIdInput = document.getElementById('user-id');
+        const userNameInput = document.getElementById('user-name');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const usersTable = document.getElementById('users-table');
+        const usersTbody = document.getElementById('users-tbody');
+        const statusText = document.getElementById('status-text');
+        const messageBox = document.getElementById('message');
+
+        // Helper to show feedback message
+        function showMessage(text, type) {
+            messageBox.textContent = text;
+            messageBox.className = `message ${type}`;
+            setTimeout(() => {
+                messageBox.className = 'message';
+            }, 3000);
+        }
+
+        // Reset form to Add mode
+        function resetForm() {
+            userIdInput.value = '';
+            userNameInput.value = '';
+            submitBtn.textContent = 'Add User';
+            cancelBtn.classList.add('hidden');
+        }
+
+        // 3. READ (GET)
+        function getUsers() {
+            http.get(API_URL)
+                .then(users => {
+                    usersTbody.innerHTML = '';
+
+                    if (users.length === 0) {
+                        statusText.textContent = 'No users found.';
+                        statusText.classList.remove('hidden');
+                        usersTable.classList.add('hidden');
+                        return;
+                    }
+
+                    statusText.classList.add('hidden');
+                    usersTable.classList.remove('hidden');
+
+                    users.forEach(user => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td class="actions">
+                                <button class="btn-edit" onclick="editUser('${user.id}', '${user.name.replace(/'/g, "\\'")}')">Edit</button>
+                                <button class="btn-delete" onclick="deleteUser('${user.id}')">Delete</button>
+                            </td>
+                        `;
+                        usersTbody.appendChild(tr);
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    statusText.textContent = 'Failed to load users.';
+                    showMessage(err.message, 'error');
+                });
+        }
+
+        // 4. CREATE (POST) & UPDATE (PUT)
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const id = userIdInput.value;
+            const data = { name: userNameInput.value.trim() };
+            if (!data.name) return;
+
+            if (id) {
+                // Update existing user
+                http.put(`${API_URL}/${id}`, data)
+                    .then(() => {
+                        resetForm();
+                        getUsers();
+                        showMessage('User updated!', 'success');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        showMessage(err.message, 'error');
+                    });
+            } else {
+                // Create new user
+                http.post(API_URL, data)
+                    .then(() => {
+                        resetForm();
+                        getUsers();
+                        showMessage('User added!', 'success');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        showMessage(err.message, 'error');
+                    });
+            }
+        });
+
+        // Fill form for editing
+        function editUser(id, name) {
+            userIdInput.value = id;
+            userNameInput.value = name;
+            submitBtn.textContent = 'Update User';
+            cancelBtn.classList.remove('hidden');
+            userNameInput.focus();
+        }
+
+        // Cancel edit
+        cancelBtn.addEventListener('click', resetForm);
+
+        // 5. DELETE (DELETE)
+        function deleteUser(id) {
+            http.delete(`${API_URL}/${id}`)
+                .then(() => {
+                    if (userIdInput.value === id) resetForm();
+                    getUsers();
+                    showMessage('User deleted!', 'success');
+                })
+                .catch(err => {
+                    console.log(err);
+                    showMessage(err.message, 'error');
+                });
+        }
+
+        // Load users on startup
+        getUsers();
+    </script>
+</body>
+</html>
